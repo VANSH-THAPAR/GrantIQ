@@ -225,12 +225,15 @@ Pages:
 * Show summary stats
 * Show recent recommendations
 
+
+
 ---
 
 ### Step 6: Recommendations Page
 
 * Fetch recommended schemes
 * Display cards
+
 
 ---
 
