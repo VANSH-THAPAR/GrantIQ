@@ -1,11 +1,14 @@
 import scrapy
 from scheme_scraper.items import SchemeItem
-import urllib.parse
 
-class StartupIndiaSpider(scrapy.Spider):
-    name = "startupindia"
-    allowed_domains = ["startupindia.gov.in"]
-    start_urls = ["https://www.startupindia.gov.in/content/sih/en/government-schemes.html"]
+class NswsSpider(scrapy.Spider):
+    name = "nsws"
+    allowed_domains = ["nsws.gov.in"]
+    start_urls = [
+        "https://www.nsws.gov.in/",
+        "https://www.nsws.gov.in/schemes",
+        "https://www.nsws.gov.in/all-schemes"
+    ]
 
     def start_requests(self):
         for url in self.start_urls:
@@ -28,9 +31,7 @@ class StartupIndiaSpider(scrapy.Spider):
         collected_urls = set()
 
         try:
-            self.logger.info("--- Scraping StartupIndia Directory Page ---")
-
-            # Wait for any links to appear (generic wait)
+            self.logger.info(f"--- Scraping NSWS Directory Page: {response.url} ---")
             await page.wait_for_timeout(5000)
 
             # Find all links on the page
@@ -38,9 +39,8 @@ class StartupIndiaSpider(scrapy.Spider):
 
             new_links_found = 0
             for link in links:
-                # Assuming scheme links contain 'government-schemes' or similar identifiers
-                # Adjust '/government-schemes/' to whatever the specific detail page path is if known
-                if link and ("scheme" in link.lower() or "funding" in link.lower()) and link not in collected_urls and getattr(self, 'start_urls')[0] != link:
+                # We target links that look like schemes, approvals, or policies
+                if link and any(keyword in link.lower() for keyword in ["scheme", "approval", "policy"]) and link not in collected_urls:
                     collected_urls.add(link)
                     new_links_found += 1
 
@@ -60,7 +60,7 @@ class StartupIndiaSpider(scrapy.Spider):
             self.logger.info(f"Found {new_links_found} potential scheme links. Total queued: {len(collected_urls)}")
 
         except Exception as e:
-            self.logger.error(f"Error in StartupIndia pagination loop: {e}")
+            self.logger.error(f"Error in NSWS pagination loop: {e}")
         finally:
             await page.close()
 
@@ -69,20 +69,18 @@ class StartupIndiaSpider(scrapy.Spider):
 
         try:
             self.logger.info(f"--- Extracting Scheme from: {response.url} ---")
-            # Let the page fully render
             await page.wait_for_timeout(3000)
 
             raw_text = await page.evaluate('''() => {
                 const body = document.querySelector('body');
                 if (!body) return "";
                 const n = body.cloneNode(true);
-                const navs = n.querySelectorAll('nav, header, footer, script, style, noscript, iframe, .chatbot');
+                const navs = n.querySelectorAll('nav, header, footer, script, style, noscript, iframe');
                 navs.forEach(nav => nav.remove());
                 return n.innerText;
             }''')
 
             text_len = len(raw_text.strip()) if raw_text else 0
-            self.logger.info(f"Extracted {text_len} characters of raw text.")
 
             # Ensure we actually got text before sending it to Gemini
             if raw_text and text_len > 300:
@@ -92,10 +90,9 @@ class StartupIndiaSpider(scrapy.Spider):
                 item['raw_text'] = raw_text
                 yield item
             else:
-                self.logger.warning(f"Not enough structural text ({text_len} chars) extracted from {response.url}. Skipping.")
+                self.logger.warning(f"Not enough structural text ({text_len} chars) extracted. Skipping.")
 
         except Exception as e:
             self.logger.error(f"Error extracting data from {response.url}: {e}")
         finally:
-            self.logger.info(f"Closing Playwright page for {response.url}")
             await page.close()

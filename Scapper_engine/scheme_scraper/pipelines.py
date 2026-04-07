@@ -121,12 +121,8 @@ class MongoDBPipeline:
         adapter = ItemAdapter(item)
         data = adapter.asdict()
         
-        # Dynamically set collection based on the actual URL of the item (ignores generic spider domain list)
-        source_url = data.get("source_url", "")
-        parsed_url = urllib.parse.urlparse(source_url)
-        domain = parsed_url.netloc.replace("www.", "") if parsed_url.netloc else "general_schemes"
-        
-        collection_name = domain.replace('.', '_')
+        # Always insert into the 'myscheme_gov_in' collection so they are all queried together with backend
+        collection_name = 'myscheme_gov_in'
         collection = self.db[collection_name]
         
         # Ensure indexes exist for fast tag filtering
@@ -134,10 +130,16 @@ class MongoDBPipeline:
         collection.create_index("industry_tags")
         collection.create_index("target_audience_tags")
         collection.create_index("category_tags")
-        collection.create_index("scheme_id", unique=True)
         
-        # Upsert based on source_url
-        query = {"source_url": data.get("source_url")}
+        # upsert based on scheme_id or source_url
+        scheme_id = data.get("scheme_id")
+        if scheme_id:
+            collection.create_index("scheme_id", unique=True)
+            query = {"scheme_id": scheme_id}
+        else:
+            collection.create_index("source_url", unique=True)
+            query = {"source_url": data.get("source_url")}
+            
         update = {"$set": data}
         
         try:
