@@ -167,9 +167,12 @@ class SchemeRecommender:
         return results
     
     def _fetch_candidates(self, company: CompanyProfile) -> List[Dict]:
-        """Step 1: Broad filtering"""
         if self.collection is None:
-            logger.error("MongoDB collection not available")
+            return []
+        try:
+            # Let's grab all schemes and score them all to avoid missing matches
+            return list(self.collection.find({}).limit(400))
+        except Exception as e:
             return []
         
         try:
@@ -201,34 +204,44 @@ class SchemeRecommender:
     
     def _score_industry(self, company: CompanyProfile, scheme: Dict) -> float:
         industry_tags = scheme.get('industry_tags') or []
-        if not industry_tags: return 70.0 # Default if undefined
-        if company.industry and any(company.industry.lower() in str(t).lower() for t in industry_tags): return 100.0
+        scheme_str = str(scheme).lower()
+        if company.industry and company.industry.lower() in scheme_str: return 100.0
         if "all" in str(industry_tags).lower(): return 80.0
-        return 10.0
+        
+        # Give a base score if there are no strict industry limitations
+        if not industry_tags: return 70.0
+        
+        # Otherwise penalize mismatched industries
+        return 20.0
     
     def _score_stage(self, company: CompanyProfile, scheme: Dict) -> float:
         stages = (scheme.get('business_stages') or []) + (scheme.get('category_tags') or [])
+        scheme_str = str(scheme).lower()
+        if company.business_stage and company.business_stage.lower() in scheme_str: return 100.0
+        
         if not stages: return 80.0
-        if company.business_stage and company.business_stage.lower() in str(stages).lower(): return 100.0
         return 40.0
     
     def _score_location(self, company: CompanyProfile, scheme: Dict) -> float:
         locations = scheme.get('location_tags') or []
-        if not locations: return 100.0 # Assume national
-        if "national" in str(locations).lower() or "central" in str(locations).lower(): return 100.0
-        if company.location and company.location.state and company.location.state.lower() in str(locations).lower(): return 100.0
-        return 0.0
+        scheme_str = str(scheme).lower()
+        if company.location and company.location.state and company.location.state.lower() in scheme_str: return 100.0
+        if "national" in scheme_str or "central" in scheme_str: return 90.0
+        if not locations: return 80.0
+        return 30.0
     
     def _score_revenue(self, company: CompanyProfile, scheme: Dict) -> float:
         return 100.0 # Simplified for matching your scraped data format which lacks revenue bounds
     
     def _score_audience(self, company: CompanyProfile, scheme: Dict) -> float:
-        tags = (scheme.get('target_audience_tags') or []) + (scheme.get('category_tags') or [])
-        if not tags: return 70.0
+        scheme_str = str(scheme).lower()
         score = 50.0
-        if company.women_led and any('women' in str(t).lower() for t in tags): score = 100.0
-        if company.business_stage == 'startup' and any('startup' in str(t).lower() for t in tags): score = 100.0
-        return score
+        if company.women_led and 'women' in scheme_str: score += 40.0
+        if company.business_stage == 'startup' and 'startup' in scheme_str: score += 30.0
+        if company.export_focused and 'export' in scheme_str: score += 40.0
+        if company.registered_category and company.registered_category.lower() in scheme_str: score += 20.0
+        
+        return min(100.0, score)
     
     def _score_category(self, company: CompanyProfile, scheme: Dict) -> float:
         return 80.0

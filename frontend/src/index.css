@@ -14,3 +14,75 @@ body {
   color: hsl(var(--foreground));
   font-family: system-ui, -apple-system, sans-serif;
 }
+
+@theme {
+  --color-primary: #755b00;
+  --color-inverse-primary: #edc144;
+  --color-secondary-fixed: #e4e2e1;
+  --color-on-primary-container: #6c5400;
+  --color-on-secondary: #ffffff;
+  --color-on-error: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-secondary-container: #656464;
+  --color-on-secondary-fixed: #1b1c1c;
+  --color-on-primary-fixed-variant: #584400;
+  --color-on-tertiary: #ffffff;
+  --color-on-surface: #1b1c1a;
+  --color-primary-container: #f4c84a;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-secondary-fixed-variant: #474747;
+  --color-primary-fixed-dim: #edc144;
+  --color-surface-container-high: #e9e8e4;
+  --color-surface-variant: #e3e2df;
+  --color-on-primary: #ffffff;
+  --color-surface-dim: #dbdad6;
+  --color-secondary: #5f5e5e;
+  --color-surface-bright: #faf9f5;
+  --color-surface-container-low: #f5f4f0;
+  --color-outline-variant: #d1c5af;
+  --color-outline: #7f7663;
+  --color-surface-tint: #755b00;
+  --color-surface-container: #efeeea;
+  --color-on-error-container: #93000a;
+  --color-secondary-fixed-dim: #c8c6c6;
+  --color-on-tertiary-container: #6e5300;
+  --color-on-surface-variant: #4e4635;
+  --color-on-primary-fixed: #241a00;
+  --color-tertiary-fixed: #ffdf9a;
+  --color-tertiary: #785a00;
+  --color-surface-container-highest: #e3e2df;
+  --color-tertiary-fixed-dim: #f7be1d;
+  --color-on-tertiary-fixed-variant: #5a4300;
+  --color-secondary-container: #e4e2e1;
+  --color-inverse-surface: #30312e;
+  --color-on-tertiary-fixed: #251a00;
+  --color-background: #faf9f5;
+  --color-on-background: #1b1c1a;
+  --color-primary-fixed: #ffdf90;
+  --color-inverse-on-surface: #f2f1ed;
+  --color-surface: #faf9f5;
+  --color-tertiary-container: #fec526;
+  --font-headline: Manrope;
+  --font-body: 'Public Sans';
+  --font-label: 'Public Sans';
+}
+
+@layer components {
+  .quiet-input {
+    @apply block w-full bg-surface-container-lowest border-outline-variant/30 rounded-xl py-3 px-4 text-on-surface focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all duration-200 font-body;
+  }
+  .form-label {
+    @apply block text-sm font-semibold text-on-surface-variant mb-2 font-label;
+  }
+  .custom-toggle:checked {
+    @apply bg-primary border-transparent;
+  }
+  .ribbon-status {
+    @apply absolute left-0 top-0 bottom-0 w-1 rounded-l-xl;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+}

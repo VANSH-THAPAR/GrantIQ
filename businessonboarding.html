@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CivicMatch | Business Onboarding</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Public_Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#755b00",
+                        "inverse-primary": "#edc144",
+                        "secondary-fixed": "#e4e2e1",
+                        "on-primary-container": "#6c5400",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#656464",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary-fixed-variant": "#584400",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#1b1c1a",
+                        "primary-container": "#f4c84a",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#474747",
+                        "primary-fixed-dim": "#edc144",
+                        "surface-container-high": "#e9e8e4",
+                        "surface-variant": "#e3e2df",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad6",
+                        "secondary": "#5f5e5e",
+                        "surface-bright": "#faf9f5",
+                        "surface-container-low": "#f5f4f0",
+                        "outline-variant": "#d1c5af",
+                        "outline": "#7f7663",
+                        "surface-tint": "#755b00",
+                        "surface-container": "#efeeea",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-tertiary-container": "#6e5300",
+                        "on-surface-variant": "#4e4635",
+                        "on-primary-fixed": "#241a00",
+                        "tertiary-fixed": "#ffdf9a",
+                        "tertiary": "#785a00",
+                        "surface-container-highest": "#e3e2df",
+                        "tertiary-fixed-dim": "#f7be1d",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "secondary-container": "#e4e2e1",
+                        "inverse-surface": "#30312e",
+                        "on-tertiary-fixed": "#251a00",
+                        "background": "#faf9f5",
+                        "on-background": "#1b1c1a",
+                        "primary-fixed": "#ffdf90",
+                        "inverse-on-surface": "#f2f1ed",
+                        "surface": "#faf9f5",
+                        "tertiary-container": "#fec526"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Public Sans"],
+                        "label": ["Public Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .quiet-input {
+            @apply block w-full bg-surface-container-lowest border-outline-variant/30 rounded-xl py-3 px-4 text-on-surface focus:ring-4 focus:ring-primary/10 focus:border-primary transition-all duration-200 font-body;
+        }
+        .form-label {
+            @apply block text-sm font-semibold text-on-surface-variant mb-2 font-label;
+        }
+        .custom-toggle:checked {
+            @apply bg-primary border-transparent;
+        }
+        .ribbon-status {
+            @apply absolute left-0 top-0 bottom-0 w-1 rounded-l-xl;
+        }
+    </style>
+</head>
+<body class="bg-[#F7F6F2] text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sticky Header -->
+<header class="fixed top-0 w-full z-50 bg-[#2F2F2F] h-20 shadow-[0px_20px_40px_rgba(27,28,26,0.12)] flex items-center px-8">
+<div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[#2F2F2F]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<span class="font-headline font-extrabold text-white text-xl tracking-tight">CivicMatch</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold">Profile Completion</span>
+<div class="flex items-center gap-3">
+<div class="w-48 h-1.5 bg-stone-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[10%]" style="transition: width 0.5s ease;"></div>
+</div>
+<span class="text-white font-headline font-bold text-sm">0%</span>
+</div>
+</div>
+<div class="h-10 w-10 rounded-full bg-stone-700 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 px-6">
+<!-- Hero Section -->
+<section class="max-w-4xl mx-auto text-center mb-16">
+<h1 class="font-headline font-extrabold text-5xl md:text-6xl text-on-surface tracking-tight mb-6">
+                Business <span class="text-primary">Onboarding</span>
+</h1>
+<p class="text-lg text-secondary font-body max-w-2xl mx-auto leading-relaxed">
+                Provide your business details to discover the most relevant government schemes tailored for you. Our system maps your profile against 400+ central and state initiatives.
+            </p>
+</section>
+<div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-12">
+<!-- Side Navigation (Anchored) -->
+<aside class="hidden md:block w-72 shrink-0">
+<nav class="sticky top-32 space-y-2">
+<div class="p-4 bg-surface-container-lowest rounded-xl flex items-center gap-4 mb-6 shadow-sm border border-outline-variant/10">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img alt="Org Logo" class="w-full h-full object-cover" data-alt="professional modern minimalist corporate office building logo on clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9Hj6y-BIGK6ltuH77PmVRfkOYraj5CLA-fQ0cfpaGInsXcsAqgW3qoj71nRLIjRrU_ORxs_Ao0_77fsQi32-LmXEJ6J0n-2h1bjmHuqDTd1Tlq7AKUSDS2NsvKozrhoaVcJhCm0xT_FYDqCCVWT04xPck4BzBHD_mNT-D4JiK_U2CBujFfJHURk8CIqfyy6AsBcWJ6W1enMvKfzDt1m-52UgnYget_AwMFWttg2OqLpnJDFQNhAQBCyBeobcoeXyVBaKhavJel0B_"/>
+</div>
+<div>
+<p class="font-headline font-bold text-sm text-on-surface">GovScheme Portal</p>
+<p class="text-xs text-secondary">Organization Setup</p>
+</div>
+</div>
+<a class="flex items-center gap-3 px-4 py-3 bg-white text-primary font-bold rounded-l-xl transition-all translate-x-1" href="#basic">
+<span class="material-symbols-outlined text-xl">edit_note</span>
+<span class="text-sm">Basic Details</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-all" href="#scale">
+<span class="material-symbols-outlined text-xl">trending_up</span>
+<span class="text-sm">Scale &amp; Stage</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-all" href="#eligibility">
+<span class="material-symbols-outlined text-xl">verified_user</span>
+<span class="text-sm">Eligibility</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-all" href="#geography">
+<span class="material-symbols-outlined text-xl">map</span>
+<span class="text-sm">Geography</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary hover:bg-surface-container transition-all" href="#review">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+<span class="text-sm">Review</span>
+</a>
+</nav>
+</aside>
+<!-- Form Content -->
+<div class="flex-1 space-y-10">
+<!-- Section 1: Basic Details -->
+<section class="relative bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-[0px_20px_40px_rgba(27,28,26,0.04)]" id="basic">
+<div class="ribbon-status bg-primary-container"></div>
+<div class="mb-8">
+<h2 class="font-headline font-bold text-2xl text-on-surface mb-2">Basic Details</h2>
+<p class="text-secondary text-sm">Fundamental information about your corporate identity.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-1">
+<label class="form-label">Company Name</label>
+<input class="quiet-input" placeholder="e.g. Acme Tech Solutions" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="form-label">Industry</label>
+<select class="quiet-input">
+<option>Select Industry</option>
+<option>Information Technology</option>
+<option>Manufacturing</option>
+<option>Agriculture</option>
+<option>Healthcare</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="form-label">Entity Type</label>
+<select class="quiet-input">
+<option>Select Entity</option>
+<option>Private Limited</option>
+<option>Partnership</option>
+<option>Proprietorship</option>
+<option>LLP</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="form-label">Founded Year</label>
+<input class="quiet-input" placeholder="YYYY" type="number"/>
+</div>
+</div>
+</section>
+<!-- Section 2: Scale & Stage -->
+<section class="relative bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-[0px_20px_40px_rgba(27,28,26,0.04)]" id="scale">
+<div class="mb-8">
+<h2 class="font-headline font-bold text-2xl text-on-surface mb-2">Scale &amp; Stage</h2>
+<p class="text-secondary text-sm">Quantifying your current market footprint and operational size.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-1">
+<label class="form-label">Business Stage</label>
+<select class="quiet-input">
+<option>Select Stage</option>
+<option>Ideation</option>
+<option>MVP/Early Traction</option>
+<option>Scaling</option>
+<option>Matured</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="form-label">Annual Revenue (₹ in Crores)</label>
+<input class="quiet-input" placeholder="0.00" type="number"/>
+</div>
+<div class="md:col-span-2 space-y-1">
+<label class="form-label">Team Size</label>
+<input class="quiet-input" placeholder="Total number of employees" type="number"/>
+</div>
+</div>
+</section>
+<!-- Section 3: Eligibility & Founder Profile (Highlighted) -->
+<section class="relative bg-[#FFFFFF] p-8 md:p-12 rounded-xl border-2 border-primary-container/20 shadow-[0px_30px_60px_rgba(117,91,0,0.05)]" id="eligibility">
+<div class="absolute -top-4 right-8 bg-primary-container text-on-primary-container px-4 py-1 rounded-full text-xs font-bold tracking-tight shadow-sm">
+                        CRITICAL FOR SUBSIDIES
+                    </div>
+<div class="mb-8">
+<h2 class="font-headline font-bold text-2xl text-on-surface mb-2">Eligibility &amp; Founder Profile</h2>
+<p class="text-secondary text-sm">Social markers and certifications that unlock specific reservation-based schemes.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="space-y-6">
+<div class="space-y-1">
+<label class="form-label">Founder Social Category</label>
+<select class="quiet-input">
+<option>General</option>
+<option>OBC</option>
+<option>SC/ST</option>
+<option>Minority</option>
+</select>
+</div>
+<div class="space-y-3">
+<label class="form-label">MSME Status</label>
+<div class="flex gap-6">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="msme" type="radio"/>
+<span class="text-sm font-medium">Udyam Registered</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="msme" type="radio"/>
+<span class="text-sm font-medium">Not Registered</span>
+</label>
+</div>
+</div>
+</div>
+<div class="space-y-4 bg-surface-container-low p-6 rounded-xl">
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">DPIIT Recognized Startup</span>
+<input class="w-10 h-5 rounded-full bg-stone-300 border-none text-primary custom-toggle appearance-none cursor-pointer relative checked:after:translate-x-5 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-transform" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-primary">Women-Led Enterprise</span>
+<input class="w-10 h-5 rounded-full bg-stone-300 border-none text-primary custom-toggle appearance-none cursor-pointer relative checked:after:translate-x-5 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-transform" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">First Generation Entrepreneur</span>
+<input class="w-10 h-5 rounded-full bg-stone-300 border-none text-primary custom-toggle appearance-none cursor-pointer relative checked:after:translate-x-5 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-transform" type="checkbox"/>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold">Ex-Servicemen Founded</span>
+<input class="w-10 h-5 rounded-full bg-stone-300 border-none text-primary custom-toggle appearance-none cursor-pointer relative checked:after:translate-x-5 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-transform" type="checkbox"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Geography & Funding -->
+<section class="relative bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-[0px_20px_40px_rgba(27,28,26,0.04)]" id="geography">
+<div class="mb-8">
+<h2 class="font-headline font-bold text-2xl text-on-surface mb-2">Geography &amp; Funding</h2>
+<p class="text-secondary text-sm">Where you operate determines your eligibility for state-specific grants.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-1">
+<label class="form-label">Operation Scope</label>
+<select class="quiet-input">
+<option>Regional</option>
+<option>Pan-India</option>
+<option>International</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="form-label">Headquarters State</label>
+<input class="quiet-input" placeholder="e.g. Karnataka" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="form-label">Location Type</label>
+<select class="quiet-input">
+<option>Urban (Tier 1/2)</option>
+<option>Semi-Urban (Tier 3)</option>
+<option>Rural/Aspirational District</option>
+</select>
+</div>
+<div class="flex items-center justify-between bg-surface-container-low p-3 px-5 rounded-xl self-end h-[52px]">
+<span class="text-sm font-semibold">Export Focused?</span>
+<input class="w-10 h-5 rounded-full bg-stone-300 border-none text-primary custom-toggle appearance-none cursor-pointer relative checked:after:translate-x-5 after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-transform" type="checkbox"/>
+</div>
+<div class="md:col-span-2 space-y-3">
+<label class="form-label">Purpose of Funds (Select all that apply)</label>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+<div class="flex items-center gap-2 p-3 border border-outline-variant/30 rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-xs font-medium">Working Capital</span>
+</div>
+<div class="flex items-center gap-2 p-3 border border-outline-variant/30 rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-xs font-medium">R&amp;D / Tech Adoption</span>
+</div>
+<div class="flex items-center gap-2 p-3 border border-outline-variant/30 rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-xs font-medium">Equipment Purchase</span>
+</div>
+<div class="flex items-center gap-2 p-3 border border-outline-variant/30 rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-xs font-medium">Export Marketing</span>
+</div>
+<div class="flex items-center gap-2 p-3 border border-outline-variant/30 rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-xs font-medium">Hiring / Training</span>
+</div>
+<div class="flex items-center gap-2 p-3 border border-outline-variant/30 rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-xs font-medium">Sustainability</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Action Section -->
+<section class="mt-12 text-center p-12 bg-[#2F2F2F] rounded-2xl shadow-xl overflow-hidden relative">
+<div class="absolute inset-0 opacity-10" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDNLajvzR-5-j3TRT2ZKrfhhZTJrHoNPYH0XsLeCOsXvjKhWb7wHBIKVrDbyjcccUjDWU4xTCsyCBE0Kfo4CHeA2YkMTRB7qJx3YqlCiUVFJV7XhzXoKPaZkAr-omlybWrL0oVv-1YIRLu4K8wdjFZOspjjD9W8CnHzT1yezycoGvuEvjlulI77-Hc-mFLeWGHl8nwpbdqkR_FI-25ivBRjB81ZLM9zBIa9OKA15wDQlm48jtqR9PrtLZqavxzXHHAC-djFrCdr-jOr');"></div>
+<div class="relative z-10">
+<h3 class="font-headline font-bold text-3xl text-white mb-4">Ready to Discover?</h3>
+<p class="text-stone-400 mb-10 max-w-lg mx-auto font-body">Our algorithm will now analyze your profile against the central scheme database and provide a curated list of benefits.</p>
+<button class="bg-[#F4C84A] text-[#241a00] font-headline font-black px-12 py-5 rounded-full text-lg shadow-lg hover:bg-white hover:scale-[1.02] transition-all duration-300 flex items-center gap-3 mx-auto">
+                            Find My Eligible Schemes
+                            <span class="material-symbols-outlined font-bold">arrow_forward</span>
+</button>
+<div class="mt-10 pt-10 border-t border-stone-700 flex flex-col md:flex-row items-center justify-center gap-8">
+<div class="flex items-center gap-2 text-stone-400 text-xs uppercase tracking-widest font-bold">
+<span class="material-symbols-outlined text-primary-container">verified</span>
+                                Data Trust Certified
+                            </div>
+<div class="flex items-center gap-2 text-stone-400 text-xs uppercase tracking-widest font-bold">
+<span class="material-symbols-outlined text-primary-container">lock</span>
+                                AES-256 Encrypted
+                            </div>
+<div class="flex items-center gap-2 text-stone-400 text-xs uppercase tracking-widest font-bold">
+<span class="material-symbols-outlined text-primary-container">shield</span>
+                                Ministry Audited
+                            </div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 bg-surface-container shadow-[0px_-4px_40px_rgba(27,28,26,0.02)]">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 w-full max-w-7xl mx-auto">
+<p class="font-label text-xs uppercase tracking-widest text-stone-500 mb-6 md:mb-0">
+                © 2024 Ministry of Digital Infrastructure. Secure Data Trust Certified.
+            </p>
+<div class="flex gap-8">
+<a class="font-label text-xs uppercase tracking-widest text-stone-400 hover:text-primary hover:underline transition-colors" href="#">Privacy Policy</a>
+<a class="font-label text-xs uppercase tracking-widest text-stone-400 hover:text-primary hover:underline transition-colors" href="#">Terms of Service</a>
+<a class="font-label text-xs uppercase tracking-widest text-stone-400 hover:text-primary hover:underline transition-colors" href="#">Security Whitepaper</a>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const inputs = document.querySelectorAll(".quiet-input");
+    const companyNameInput = inputs[0];
+    const industrySelect = inputs[1];
+    const entityTypeSelect = inputs[2];
+    const foundedYearInput = inputs[3];
+    const stageSelect = inputs[4];
+    const revenueInput = inputs[5];
+    const teamSizeInput = inputs[6];
+    const socialCategorySelect = inputs[7];
+    const operationScopeSelect = inputs[8];
+    const hqStateInput = inputs[9];
+    const locationTypeSelect = inputs[10];
+
+    const msmeRadios = document.querySelectorAll('input[name="msme"]');
+    const toggles = document.querySelectorAll(".custom-toggle");
+    const dpiitToggle = toggles[0];
+    const womenLedToggle = toggles[1];
+    const firstGenToggle = toggles[2];
+    const exServicemenToggle = toggles[3];
+    const exportFocusedToggle = toggles[4];
+
+    const fundPurposeCheckboxes = document.querySelectorAll('input[type="checkbox"]:not(.custom-toggle)');
+    const submitBtn = document.querySelector('button');
+
+    const createErrorEl = (inputEl) => {
+        const errorEl = document.createElement("div");
+        errorEl.className = "text-error text-xs mt-1 hidden font-bold";
+        inputEl.parentNode.appendChild(errorEl);
+        return errorEl;
+    };
+
+    const errors = {
+        companyName: createErrorEl(companyNameInput),
+        industry: createErrorEl(industrySelect),
+        entityType: createErrorEl(entityTypeSelect),
+        foundedYear: createErrorEl(foundedYearInput),
+        revenue: createErrorEl(revenueInput),
+        teamSize: createErrorEl(teamSizeInput)
+    };
+
+    const showError = (field, message) => {
+        errors[field].textContent = message;
+        errors[field].classList.remove("hidden");
+        // Highlight border
+        if (field === "companyName") companyNameInput.classList.add("border-error");
+        if (field === "industry") industrySelect.classList.add("border-error");
+        if (field === "entityType") entityTypeSelect.classList.add("border-error");
+        if (field === "foundedYear") foundedYearInput.classList.add("border-error");
+        if (field === "revenue") revenueInput.classList.add("border-error");
+        if (field === "teamSize") teamSizeInput.classList.add("border-error");
+    };
+
+    const hideErrors = () => {
+        Object.values(errors).forEach(el => {
+            el.textContent = "";
+            el.classList.add("hidden");
+        });
+        [companyNameInput, industrySelect, entityTypeSelect, foundedYearInput, revenueInput, teamSizeInput].forEach(el => el.classList.remove("border-error"));
+    };
+
+    const validate = () => {
+        hideErrors();
+        let isValid = true;
+
+        if (!companyNameInput.value.trim()) {
+            showError("companyName", "Company Name is required");
+            isValid = false;
+        }
+        if (industrySelect.value === "Select Industry") {
+            showError("industry", "Industry is required");
+            isValid = false;
+        }
+        if (entityTypeSelect.value === "Select Entity") {
+            showError("entityType", "Entity Type is required");
+            isValid = false;
+        }
+        
+        const year = parseInt(foundedYearInput.value);
+        const currentYear = new Date().getFullYear();
+        if (!foundedYearInput.value || isNaN(year) || year < 1900 || year > currentYear) {
+            showError("foundedYear", `Founded Year must be between 1900 and ${currentYear}`);
+            isValid = false;
+        }
+
+        const revenue = parseFloat(revenueInput.value);
+        if (!revenueInput.value || isNaN(revenue) || revenue < 0) {
+            showError("revenue", "Revenue must be a positive number");
+            isValid = false;
+        }
+
+        const teamSize = parseInt(teamSizeInput.value);
+        if (!teamSizeInput.value || isNaN(teamSize) || teamSize <= 0) {
+            showError("teamSize", "Team Size must be a positive integer");
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
+    submitBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        
+        if (!validate()) {
+            return;
+        }
+
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Processing... <span class="material-symbols-outlined font-bold">hourglass_empty</span>';
+        submitBtn.disabled = true;
+
+        let msmeStatusStr = "";
+        if (msmeRadios[0].checked) msmeStatusStr = "Registered";
+        else if (msmeRadios[1].checked) msmeStatusStr = "Not Registered";
+
+        const fundPurpose = [];
+        const fundLabels = ["Working Capital", "R&D / Tech Adoption", "Equipment Purchase", "Export Marketing", "Hiring / Training", "Sustainability"];
+        fundPurposeCheckboxes.forEach((cb, idx) => {
+            if (cb.checked) fundPurpose.push(fundLabels[idx]);
+        });
+
+        const formData = {
+            companyName: companyNameInput.value.trim(),
+            industry: industrySelect.value,
+            entityType: entityTypeSelect.value,
+            foundedYear: parseInt(foundedYearInput.value),
+            stage: stageSelect.value !== "Select Stage" ? stageSelect.value : "",
+            revenue: parseFloat(revenueInput.value),
+            teamSize: parseInt(teamSizeInput.value),
+            socialCategory: socialCategorySelect.value !== "General" ? socialCategorySelect.value : "General",
+            msmeStatus: msmeStatusStr,
+            dpiit: dpiitToggle.checked,
+            womenLed: womenLedToggle.checked,
+            firstGen: firstGenToggle.checked,
+            exServicemen: exServicemenToggle.checked,
+            pwd: false,
+            operationScope: operationScopeSelect.value,
+            hqState: hqStateInput.value.trim(),
+            locationType: locationTypeSelect.value,
+            exportFocused: exportFocusedToggle.checked,
+            fundPurpose: fundPurpose
+        };
+
+        try {
+            const response = await fetch("/api/onboarding", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                window.location.href = "/results";
+            } else {
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch(e) {}
+                const titleText = document.querySelector(".w-full.py-12.bg-surface-container");
+                let generalError = document.getElementById("general-error");
+                if (!generalError) {
+                    generalError = document.createElement("div");
+                    generalError.id = "general-error";
+                    generalError.className = "text-error text-sm font-bold text-center mt-4 bg-error-container p-3 rounded-lg mx-auto max-w-lg relative z-20";
+                    submitBtn.parentNode.insertBefore(generalError, submitBtn.nextSibling);
+                }
+                generalError.textContent = (errorData && errorData.message) ? errorData.message : "Failed to submit. Please try again.";
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        } catch (error) {
+            console.error("Submission Error:", error);
+            let generalError = document.getElementById("general-error");
+            if (!generalError) {
+                generalError = document.createElement("div");
+                generalError.id = "general-error";
+                generalError.className = "text-error text-sm font-bold text-center mt-4 bg-error-container p-3 rounded-lg mx-auto max-w-lg relative z-20";
+                submitBtn.parentNode.insertBefore(generalError, submitBtn.nextSibling);
+            }
+            generalError.textContent = "An error occurred while connecting to the server.";
+            
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    const inputsToTrack = [companyNameInput, industrySelect, entityTypeSelect, foundedYearInput, stageSelect, revenueInput, teamSizeInput, hqStateInput];
+    const progressBar = document.querySelector(".bg-primary-container");
+    const progressText = document.querySelector(".text-white.font-headline.font-bold.text-sm");
+    
+    const updateProgress = () => {
+        if(!progressBar) return;
+        let filled = 0;
+        inputsToTrack.forEach(input => {
+            if (input.value && input.value !== "Select Industry" && input.value !== "Select Entity" && input.value !== "Select Stage") {
+                filled++;
+            }
+        });
+        const percentage = Math.round((filled / inputsToTrack.length) * 100);
+        progressBar.style.width = `${percentage}%`;
+        progressText.textContent = `${percentage}%`;
+    };
+
+    inputsToTrack.forEach(input => {
+        input.addEventListener("input", updateProgress);
+        input.addEventListener("change", updateProgress);
+    });
+});
+</script>
+</body></html>

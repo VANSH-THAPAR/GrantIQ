@@ -24,9 +24,9 @@ export default function LandingPage({ onStart }) {
       <div className="flex w-full h-full relative z-10">
         
         {/* Background Spline Scene */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden flex items-end">
           
-          <div className="absolute right-[-10%] md:right-[-5%] top-10 w-full md:w-[65%] h-[90%] translate-x-[5%]">
+          <div className="absolute right-[-10%] md:right-[-5%] bottom-0 w-full md:w-[65%] h-full translate-x-[5%]">
             <SplineScene 
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" 
               className="w-full h-full opacity-100 mix-blend-multiply dark:mix-blend-normal"
