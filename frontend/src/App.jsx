@@ -6,6 +6,7 @@ import {
   Search, ShieldCheck, Sparkles, ChevronRight, 
   AlertCircle, CheckCircle2, BookOpen, Globe, ArrowRight, Activity, ArrowLeft, MessageSquareText
 } from 'lucide-react';
+import LandingPage from './pages/landing page/landingpage';
 
 export default function App() {
   const [view, setView] = useState('landing'); // 'landing' | 'wizard' | 'dashboard'
@@ -111,104 +112,7 @@ export default function App() {
 
   // 1. Landing View
   const renderLanding = () => (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="relative flex flex-col items-center justify-center min-h-[85vh] text-center px-4 overflow-hidden"
-    >
-      {/* Animated Background Elements */}
-      <motion.div 
-        animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl -z-10"
-      />
-      <motion.div 
-        animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0] }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-indigo-400/20 rounded-full blur-3xl -z-10"
-      />
-
-      {/* Floating Icons */}
-      <motion.div
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/3 left-[10%] hidden md:flex bg-white p-4 rounded-2xl shadow-xl border border-slate-100"
-      >
-        <BadgeIndianRupee className="w-8 h-8 text-emerald-500" />
-      </motion.div>
-      <motion.div
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-1/4 right-[10%] hidden md:flex bg-white p-4 rounded-2xl shadow-xl border border-slate-100"
-      >
-        <Rocket className="w-8 h-8 text-blue-500" />
-      </motion.div>
-      <motion.div
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute top-1/4 right-[15%] hidden md:flex bg-white p-4 rounded-2xl shadow-xl border border-slate-100"
-      >
-        <Briefcase className="w-8 h-8 text-indigo-500" />
-      </motion.div>
-
-      <motion.div 
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ type: "spring", bounce: 0.5, duration: 0.8 }}
-        className="bg-gradient-to-tr from-blue-600 to-indigo-600 p-5 rounded-3xl shadow-2xl border border-blue-500/30 mb-8 inline-flex relative group cursor-default"
-      >
-        <div className="absolute inset-0 bg-white/20 rounded-3xl blur group-hover:blur-md transition-all" />
-        <Sparkles className="text-white w-12 h-12 relative z-10" />
-      </motion.div>
-
-      <motion.h1 
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 mb-6 relative"
-      >
-        Unlock Growth with <br/>
-        <span className="relative">
-          <span className="absolute -inset-2 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 blur-xl rounded-full" />
-          <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">GrantIQ</span>
-        </span>
-      </motion.h1>
-
-      <motion.p 
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-        className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed font-light"
-      >
-        Your AI-powered scheme matching engine. Tell us who you are and what challenges you're facing, and we'll connect you directly to the best government grants and provisions.
-      </motion.p>
-
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-        className="flex flex-col sm:flex-row items-center gap-6"
-      >
-        <button 
-          onClick={startWizard}
-          className="bg-slate-900 hover:bg-black text-white text-lg font-bold px-10 py-5 rounded-2xl shadow-xl shadow-slate-900/20 transition-all hover:-translate-y-1 hover:shadow-2xl flex items-center gap-3 group"
-        >
-          Start Matching
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 group-hover:scale-110 transition-all" />
-        </button>
-        
-        <div className="flex items-center gap-4 text-sm font-medium text-slate-500 bg-white/50 backdrop-blur-sm px-6 py-4 rounded-2xl border border-slate-200/50 shadow-sm">
-          <span className="flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5 text-emerald-500" /> AI Powered
-          </span>
-          <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-          <span className="flex items-center gap-2">
-            <FileBadge className="w-5 h-5 text-blue-500" /> 500+ Schemes
-          </span>
-        </div>
-      </motion.div>
-    </motion.div>
+    <LandingPage onStart={startWizard} />
   );
 
   // 2. Wizard View
@@ -585,24 +489,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50/50 font-sans text-slate-900 pb-20 overflow-x-hidden">
-      <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100/40 via-slate-50 to-white pointer-events-none" />
-
-      {/* Nav */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200/60 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('landing')}>
-            <div className="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2 rounded-xl shadow-sm border border-blue-500/20">
-              <Sparkles className="text-white w-5 h-5" />
-            </div>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">GrantIQ</h1>
-          </div>
-          {view === 'dashboard' && (
-            <button onClick={() => setView('wizard')} className="text-sm font-semibold text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg transition-colors">
-              Edit Profile
-            </button>
-          )}
-        </div>
-      </nav>
+      <div className="fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-blue-100/40 via-slate-50 to-white pointer-events-none" />
 
       {/* Primary View Routing */}
       <AnimatePresence mode="wait">

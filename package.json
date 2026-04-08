@@ -1,7 +1,58 @@
 {
+  "name": "ai-government-scheme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:ml\"",
+    "dev:frontend": "fuser -k 5173/tcp || true; cd frontend && npm run dev -- --port 5173 --strictPort",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:ml": "cd Scapper_engine && source venv/bin/activate && uvicorn matching_engine:app --port 8000 --reload"
+  },
   "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "description": "\"# GrantIQ\"  TEST",
+  "main": "index.js",
+  "dependencies": {
+    "ansi-regex": "^5.0.1",
+    "ansi-styles": "^4.3.0",
     "autoprefixer": "^10.4.27",
+    "baseline-browser-mapping": "^2.10.16",
+    "browserslist": "^4.28.2",
+    "caniuse-lite": "^1.0.30001786",
+    "chalk": "^4.1.2",
+    "cliui": "^8.0.1",
+    "color-convert": "^2.0.1",
+    "color-name": "^1.1.4",
+    "electron-to-chromium": "^1.5.332",
+    "emoji-regex": "^8.0.0",
+    "escalade": "^3.2.0",
+    "fraction.js": "^5.3.4",
+    "get-caller-file": "^2.0.5",
+    "has-flag": "^4.0.0",
+    "is-fullwidth-code-point": "^3.0.0",
+    "nanoid": "^3.3.11",
+    "node-releases": "^2.0.37",
+    "picocolors": "^1.1.1",
     "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.2"
-  }
+    "postcss-value-parser": "^4.2.0",
+    "require-directory": "^2.1.1",
+    "rxjs": "^7.8.2",
+    "shell-quote": "^1.8.3",
+    "source-map-js": "^1.2.1",
+    "string-width": "^4.2.3",
+    "strip-ansi": "^6.0.1",
+    "supports-color": "^8.1.1",
+    "tailwindcss": "^4.2.2",
+    "tree-kill": "^1.2.2",
+    "tslib": "^2.8.1",
+    "update-browserslist-db": "^1.2.3",
+    "wrap-ansi": "^7.0.0",
+    "y18n": "^5.0.8",
+    "yargs": "^17.7.2",
+    "yargs-parser": "^21.1.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
