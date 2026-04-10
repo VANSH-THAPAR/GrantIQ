@@ -76,7 +76,7 @@ function AppLayout() {
     setResults([]);
 
     try {
-      const apiUrl = import.meta.env.VITE_MATCHING_ENGINE_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_MATCHING_ENGINE_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
       const response = await fetch(`${apiUrl}/api/v1/recommend`, {
         method: 'POST',
         headers: {
