@@ -76,9 +76,13 @@ function AppLayout() {
     setResults([]);
 
     try {
-      const response = await fetch('/api/v1/recommend', {
+      const apiUrl = import.meta.env.VITE_MATCHING_ENGINE_URL || 'http://localhost:8000';
+      const response = await fetch(`${apiUrl}/api/v1/recommend`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify(profile)
       });
 
@@ -86,10 +90,10 @@ function AppLayout() {
 
       const data = await response.json();
       let recs = data.recommendations || [];
-      
+
       // Perform client-side semantic sorting based on problem text keywords
       // e.g. "loans", "funding", "machinery"
-      const rawKeywords = problemText.toLowerCase().split(/\W+/).filter(w => w.length > 3);
+      const rawKeywords = problemText ? problemText.toLowerCase().split(/\W+/).filter(w => w.length > 3) : [];
       const importantKeywords = new Set(rawKeywords); // Avoid duplicates
       
       const scoredRecs = recs.map(r => ({
@@ -122,7 +126,8 @@ function AppLayout() {
     // alert(`Starting GrantIQ Agent for ${targetForm.toUpperCase()}...\nA local Chromium browser window will open shortly.`);
     
     try {
-      const response = await fetch('http://localhost:5000/api/forms/auto-agent', {
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const response = await fetch(`http://localhost:5000/api/forms/auto-agent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ target: targetForm })
