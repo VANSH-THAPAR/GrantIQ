@@ -1,0 +1,30 @@
+services:
+  matching_engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: always
+
+  scraper_api:
+    build:
+      context: ./GrantIQ-WebScrapper
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5000"
+    env_file:
+      - ./GrantIQ-WebScrapper/.env
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend/.env
+    restart: always

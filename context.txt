@@ -1,0 +1,15 @@
+Digimantra is a mid-stage software technology startup founded in 2019, focused on building SaaS tools and platforms. They currently have 25 employees and an annual revenue of 2.5 crores. 
+The company is located in the North region with national operations, but lacks export focus and is not women-led. 
+Their biggest challenges currently revolve around managing software licensing expenses, hiring senior technology talent, scaling infrastructure costs, and exploring tax breaks for rapid growth.
+
+MSME Technology Upgrade Scheme: This government scheme provides financial assistance of up to 15 lakhs for upgrading computing hardware, acquiring specialized software licenses, and shifting to advanced digital infrastructure. Eligibility requires being a registered MSME for at least 3 years and maintaining consistent positive revenue. It strongly emphasizes software improvements.
+
+Start-up India Seed Fund Pilot: Focused on newly registered software entities looking for prototype scaling, product-market fit expansion, or hiring crucial R&D personnel. Eligible startups can receive up to 20 lakhs conditionally applied to product innovation salaries and marketing. This scheme requires DIPP registration and a viable business model.
+
+Gujarat State R&D Subsidy: State-sponsored subsidy (available to North region and National entities depending on state expansion) offering 25% rebate on R&D staff salaries and technology research equipment. Applicable to software development firms creating deep-tech algorithms or innovative SaaS platforms.
+
+Market Access Initiative (MAI): Intended for export-oriented businesses. Since Digimantra is strictly national currently, they are generally not eligible unless they present a definitive export timeline plan. This scheme covers marketing overheads abroad.
+
+EPFO Employer Incentive Scheme: Provides financial subsidies for new hires. Since Digimantra is hovering around 25 employees, they can leverage this scheme which refunds 12% of the employer's EPFO contribution for every new software engineer or staff member hired, helping them scale their engineering workforce faster.
+
+Any strategic efforts by Digimantra should immediately prioritize the MSME Technology Upgrade Scheme to offset their current cloud and licensing expenses. Secondarily, the EPFO scheme will drastically reduce costs associated with their urgent need to hire senior talent.

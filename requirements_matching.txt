@@ -1,0 +1,8 @@
+fastapi
+pydantic
+pymongo
+python-dotenv
+uvicorn
+numpy
+sentence-transformers
+scikit-learn
