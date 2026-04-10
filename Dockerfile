@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+# Ensure User 1000 exists so PyTorch does not crash on getpass.getuser()
+RUN useradd -m -u 1000 user || true
+
 COPY . /app
 
 # Setup Matching Engine
