@@ -8,7 +8,7 @@ npm start >> /app/logs.txt 2>&1 &
 
 # Start Matching Engine
 cd /app
-python3 -m uvicorn matching_engine:app --host 127.0.0.1 --port 8000 >> /app/logs.txt 2>&1 &
+uvicorn matching_engine:app --host 127.0.0.1 --port 8000 >> /app/logs.txt 2>&1 &
 
 # Start Scraper API
 cd /app/GrantIQ-WebScrapper
