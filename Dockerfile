@@ -25,7 +25,10 @@ RUN pip3 install --no-cache-dir -r GrantIQ-WebScrapper/requirements.txt
 # Setup Node.js Backend
 WORKDIR /app/backend
 RUN npm install
-# Install local Playwright browsers
+
+# Fix for Hugging Face User 1000 Permissions
+ENV PLAYWRIGHT_BROWSERS_PATH=/app/pw-browsers
+ENV HOME=/app
 RUN npx playwright install chromium
 RUN npx playwright install-deps chromium
 
@@ -34,8 +37,11 @@ WORKDIR /app
 # Setup Nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
+RUN chown -R 1000:1000 /app /var/lib/nginx /var/log/nginx /etc/nginx /run
 RUN chmod +x start.sh
 
 EXPOSE 7860
+
+USER 1000
 
 CMD ["./start.sh"]
