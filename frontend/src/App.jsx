@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -76,7 +76,7 @@ function AppLayout() {
     setResults([]);
 
     try {
-      const apiUrl = import.meta.env.VITE_MATCHING_ENGINE_URL || import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+      const apiUrl = import.meta.env.VITE_MATCHING_ENGINE_URL || import.meta.env.VITE_API_BASE_URL || 'https://vanshthapar-grantiq-space.hf.space';
       const response = await fetch(`${apiUrl}/api/v1/recommend`, {
         method: 'POST',
         headers: {
@@ -126,7 +126,7 @@ function AppLayout() {
     // alert(`Starting GrantIQ Agent for ${targetForm.toUpperCase()}...\nA local Chromium browser window will open shortly.`);
     
     try {
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://vanshthapar-grantiq-space.hf.space';
       const response = await fetch(`${apiUrl}/api/forms/auto-agent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -138,7 +138,7 @@ function AppLayout() {
       alert(data.message);
     } catch (err) {
       console.error('Failed to trigger auto-agent:', err);
-      alert('Failed to trigger the filling agent. Ensure your Express server is running on port 5000.');
+      alert('Failed to trigger the filling agent. Please ensure the deployed backend server is running.');
     }
   };
 
