@@ -127,7 +127,7 @@ function AppLayout() {
     
     try {
       const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
-      const response = await fetch(`http://localhost:5000/api/forms/auto-agent`, {
+      const response = await fetch(`${apiUrl}/api/forms/auto-agent`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ target: targetForm })
