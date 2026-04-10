@@ -26,7 +26,7 @@ if (process.env.JWT_SECRET.length < 32) {
 connectDB();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.NODE_PORT || 5000;
 
 // --- Middleware ---
 const allowedOrigins = [

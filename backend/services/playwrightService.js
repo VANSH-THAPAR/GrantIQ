@@ -9,7 +9,7 @@ class PlaywrightService {
 
     async launchBrowser() {
         // Headful mode for observability and debugging
-        this.browser = await chromium.launch({ headless: false });
+        this.browser = await chromium.launch({ headless: true });
         const context = await this.browser.newContext();
         return await context.newPage();
     }

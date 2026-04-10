@@ -126,8 +126,10 @@ function AppLayout() {
     // alert(`Starting GrantIQ Agent for ${targetForm.toUpperCase()}...\nA local Chromium browser window will open shortly.`);
     
     try {
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://vanshthapar-grantiq-space.hf.space';
-      const response = await fetch(`${apiUrl}/api/forms/auto-agent`, {
+      let apiUrl = import.meta.env.VITE_API_BASE_URL || 'https://vanshthapar-grantiq-space.hf.space';
+      apiUrl = apiUrl.replace(/\/+$/, '');
+      const url = apiUrl.endsWith('/api') ? `${apiUrl}/forms/auto-agent` : `${apiUrl}/api/forms/auto-agent`;
+      const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ target: targetForm })

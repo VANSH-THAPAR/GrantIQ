@@ -126,10 +126,8 @@ async function runTest() {
         console.error('[TestRunner] Fatal Error:', e);
     } finally {
         console.log('[TestRunner] Automated fields injected successfully.');
-        console.log('[TestRunner] Browser will remain open for manual entry. Press Ctrl+C in terminal when done.');
-        await new Promise(r => setTimeout(r, 1000000));
-        await mongoose.connection.dropDatabase(); // Clean up DB
-        await mongoose.disconnect();
+        console.log('[TestRunner] Browser will run headlessly. Testing finished.');
+        mongoose.connection.dropDatabase().then(() => mongoose.disconnect()).then(() => process.exit(0));
     }
 }
 
